@@ -1,4 +1,5 @@
 CC = gcc
+LD_FLAGS = -Wl,-z,relro,-z,now
 
 .PHONY = clean all default
 
@@ -10,10 +11,10 @@ default: ddthin
 all: default
 
 ddthin.o: main.c
-	$(CC) -c main.c -o ddthin.o
+	$(CC) $(LD_FLAGS) -c main.c -o ddthin.o
 
 ddthin: ddthin.o
-	$(CC) ddthin.o -o ddthin
+	$(CC) $(LD_FLAGS) ddthin.o -o ddthin
 
 install: ddthin
 	install -d $(DESTDIR)$(PREFIX)/bin/
