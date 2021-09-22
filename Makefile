@@ -22,6 +22,7 @@ ddthin.1.gz: ddthin.1
 install: ddthin
 	install -d $(DESTDIR)$(PREFIX)/bin/
 	install -m 755 ddthin $(DESTDIR)$(PREFIX)/bin/
+	install -d $(DESTDIR)/usr/share/man/man1/
 	install -m 644 ddthin.1.gz $(DESTDIR)/usr/share/man/man1/
 
 clean:
