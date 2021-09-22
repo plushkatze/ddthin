@@ -1,0 +1,55 @@
+.TH DDTHIN 1 
+.SH NAME
+.PP
+ddthin - a tool to copy thin/sparse volumes/files
+.SH SYNOPSIS
+.PP
+ddthin [OPTION\&...] INPUTFILE OUTPUTFILE
+.SH DESCRIPTION
+.PP
+ddthin tries to sync two files/blockdevices by checking each block
+(default=512bytes) for differences and only copying the block when it
+differs from the outputfile.
+This is to ensure sparseness is kept on the target as well as only
+triggering copy-on-write operations when neccessary.
+.SH OPTIONS
+.TP
+.BR \-b ", " \-\-blocksize=bytes\fR
+use given blocksize (using too large blocksizes will lead to issues with sparseness, when in doubt: leave at 512.
+.TP
+.BR \-q ", " \-\-quiet\fR
+avoid any ouput, even warnings!
+.TP
+.BR \-v ", " \-\-verbose\fR
+describe in detail what is happening
+.TP
+.BR \-? ", "  \-\-help\fR
+give brief help list
+.TP
+.BR \-\-usage\fR
+give a short usage message
+.TP
+.BR \-V ", " \-\-version\fR
+print program version
+
+.SH EXAMPLES
+.nf
+.RE
+Copy the LVM volume \fIvg1/myvol\fR from one volume group to the other (\fIvg2/myvol\fR). 
+IMPORTANT: \fIvg2/myvol\fR must exist as (empty) volume.
+
+.RS
+ddthin /dev/vg1/myvol /dev/vg2/myvol -b 4096\fR
+
+.RE
+Copy the LVM snapshot \fIvg1/myvol_snap1\fR to (\fIvg2/myvol_snap1\fR). 
+IMPORTANT: \fIvg2/myvol_snap1\fR must already exist as snapshot on the target VG.
+
+.RS
+ddthin /dev/vg1/myvol_snap1 /dev/vg2/myvol_snap1 -b 4096\fR
+
+.fi
+
+.RE
+For best results prepare the empty target first when cloning a plain LV and create a snapshot first then sync over it for thin-snapshot-LVs.
+
