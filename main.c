@@ -19,7 +19,7 @@
 #include <string.h>
 #include <argp.h>
 
-const char *argp_program_version = "ddthin 0.0.1";
+const char *argp_program_version = "ddthin 0.0.4";
 
 static char doc[] = "ddthin - sync files thin and sparse";
 

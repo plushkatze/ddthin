@@ -1,6 +1,6 @@
 # Maintainer: plushkatze <plushkatze@users.noreply.github.com>
 pkgname=ddthin
-pkgver=0.0.3
+pkgver=0.0.4
 pkgrel=1
 pkgdesc="Tool to copy thin/sparse volumes/files"
 arch=('x86_64')
