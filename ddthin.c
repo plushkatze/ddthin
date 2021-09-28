@@ -92,13 +92,13 @@ int main(int argc, char* argv[])
 	FILE * inputfile = fopen(arguments.args[0], "rb");
 	FILE * outputfile = fopen(arguments.args[1], "rb+");
 	
-	if (inputfile <= 0) {
-		printf("Error: could not open inputfile %s", arguments.args[0]);
+	if (inputfile == NULL) {
+		perror("Failed to open inputfile");
 		return(1);
 	}
 
-	if (outputfile <= 0) {
-		printf("Error: could not open outputfile %s", arguments.args[1]);
+	if (outputfile == NULL) {
+		perror("Failed to open outputfile");
 		return(1);
 	}
 
