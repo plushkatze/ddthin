@@ -14,8 +14,8 @@ ddthin: ddthin.o
 install: ddthin
 	install -d $(DESTDIR)$(PREFIX)/bin/
 	install -m 755 ddthin $(DESTDIR)$(PREFIX)/bin/
-	install -d $(DESTDIR)/usr/share/man/man1/
-	install -m 644 ddthin.1 $(DESTDIR)/usr/share/man/man1/
+	install -d $(DESTDIR)$(PREFIX)/share/man/man1/
+	install -m 644 ddthin.1 $(DESTDIR)$(PREFIX)/share/man/man1/
 
 release: ddthin.c LICENSE ddthin.1 PKGBUILD README.md Makefile
 	mkdir $(VERSION)
