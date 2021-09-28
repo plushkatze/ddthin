@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
 
 		// show percent done every 1000 blocks
 		if ((arguments.verbose) && (percentagedisplay % 1000)) {
-			printf("\rINFO: %.2f%% done. %dMB processed", ((double)input_pointer/(double)inputfilesize) * 100, input_pointer / 1024 / 1024);
+			printf("\rINFO: %.2f%% done. %ldMB processed", ((double)input_pointer/(double)inputfilesize) * 100, input_pointer / 1024 / 1024);
 			fflush(stdout);
 		}
 
@@ -157,7 +157,7 @@ int main(int argc, char* argv[])
 		if (bytes_read_outputfile == 0) {
 			if (!arguments.quiet) printf("WARNING: reached end of outputfile\n");
 			size_t bytes_left = outputfilesize - read_pointer;
-			if (!arguments.quiet) printf("WARNING: %zd bytes left in output not enough for full block\n", bytes_left);
+			if (!arguments.quiet) printf("WARNING: %zu bytes left in output not enough for full block\n", bytes_left);
 			// We can recover from this, but we need to sync both filepositions now
 			// both reads are now rolled back in sync, now we change bs to 1
 			fseek(inputfile, read_pointer, SEEK_SET);
@@ -176,7 +176,7 @@ int main(int argc, char* argv[])
 				// stop loop and close files
 				break;
 			}
-			if (!arguments.quiet) printf("WARNING: %zd bytes left in input not enough for full block\n", bytes_left);
+			if (!arguments.quiet) printf("WARNING: %zu bytes left in input not enough for full block\n", bytes_left);
 			// We can recover from this, but we need to sync both filepositions now
 			// If we read from output the readpointer might have moved, we need to fix this
 			read_pointer -= bytes_read_outputfile;
@@ -216,15 +216,15 @@ int main(int argc, char* argv[])
 	// all blocks processed
 	if (inputfilesize > outputfilesize) {
 		if (!arguments.quiet) 
-			printf("WARNING: inputfile was bigger than output, %zd bytes of input not processed\n", inputfilesize - outputfilesize);
+			printf("WARNING: inputfile was bigger than output, %ld bytes of input not processed\n", inputfilesize - outputfilesize);
 	}
 	if (inputfilesize < outputfilesize) {
 		if (!arguments.quiet) 
-			printf("WARNING: outputfile was bigger than input, %zd bytes in output not processed\n", outputfilesize - inputfilesize);
+			printf("WARNING: outputfile was bigger than input, %ld bytes in output not processed\n", outputfilesize - inputfilesize);
 	}
 	if ((!arguments.quiet) && (arguments.verbose)) {
-		printf("Copy done. Processed %zd bytes (%zdMB) total\n", read_pointer, read_pointer / 1024 / 1024);
-		printf("Total bytes written %zd (%.2f%%)\n", bytes_written, ((double)bytes_written / (double)read_pointer) * 100.0);
+		printf("Copy done. Processed %ld bytes (%ldMB) total\n", read_pointer, read_pointer / 1024 / 1024);
+		printf("Total bytes written %ld (%.2f%%)\n", bytes_written, ((double)bytes_written / (double)read_pointer) * 100.0);
 	}
 
 	fclose(inputfile);
