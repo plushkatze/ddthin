@@ -1,5 +1,5 @@
 CC = gcc
-LD_FLAGS = -Wl,-z,relro,-z,now
+LDFLAGS = -Wl,-z,relro,-z,now
 
 .PHONY = clean all default
 
@@ -15,10 +15,10 @@ default: ddthin ddthin.1.gz
 all: default
 
 ddthin.o: main.c
-	$(CC) $(LD_FLAGS) -c main.c -o ddthin.o
+	$(CC) $(LDFLAGS) -c main.c -o ddthin.o
 
 ddthin: ddthin.o
-	$(CC) $(LD_FLAGS) ddthin.o -o ddthin
+	$(CC) $(LDFLAGS) ddthin.o -o ddthin
 
 ddthin.1.gz: ddthin.1
 	gzip -k ddthin.1
