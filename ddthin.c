@@ -201,7 +201,6 @@ int main(int argc, char* argv[])
 			// We need to write this block to destination
 			// move back to beginning of block
 			fseek(outputfile, write_pointer, SEEK_SET);
-			long int writeoffset = ftell(outputfile);
 			// TODO: handle write errors
 			bytes_written += fwrite(inputbuffer, sizeof(char), bytes_read_inputfile, outputfile);
 			write_pointer = read_pointer;
