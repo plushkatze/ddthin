@@ -1,15 +1,10 @@
-CC = gcc
-LDFLAGS = -Wl,-z,relro,-z,now
+CC ?= gcc
+LDFLAGS ?= -Wl,-z,relro,-z,now
+PREFIX ?= /usr/local
+
+VERSION ?= ddthin-debug
 
 .PHONY = clean all default
-
-ifeq ($(PREFIX),)
-	PREFIX := /usr/local
-endif
-
-ifeq ($(VERSION),)
-	VERSION := ddthin-debug
-endif
 
 default: ddthin ddthin.1.gz
 all: default
