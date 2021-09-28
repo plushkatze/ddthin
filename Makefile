@@ -4,7 +4,7 @@ PREFIX ?= /usr/local
 
 VERSION ?= ddthin-debug
 
-.PHONY = clean all default
+.PHONY = clean all default install
 
 default: ddthin
 all: default
