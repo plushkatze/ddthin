@@ -6,19 +6,16 @@ VERSION ?= ddthin-debug
 
 .PHONY = clean all default
 
-default: ddthin ddthin.1.gz
+default: ddthin
 all: default
 
 ddthin: ddthin.o
-
-ddthin.1.gz: ddthin.1
-	gzip -k ddthin.1
 
 install: ddthin
 	install -d $(DESTDIR)$(PREFIX)/bin/
 	install -m 755 ddthin $(DESTDIR)$(PREFIX)/bin/
 	install -d $(DESTDIR)/usr/share/man/man1/
-	install -m 644 ddthin.1.gz $(DESTDIR)/usr/share/man/man1/
+	install -m 644 ddthin.1 $(DESTDIR)/usr/share/man/man1/
 
 release: ddthin.c LICENSE ddthin.1 PKGBUILD README.md Makefile
 	mkdir $(VERSION)
@@ -33,4 +30,3 @@ release: ddthin.c LICENSE ddthin.1 PKGBUILD README.md Makefile
 clean:
 	-rm -f ddthin.o
 	-rm -f ddthin
-	-rm -f ddthin.1.gz
