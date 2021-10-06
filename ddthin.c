@@ -27,7 +27,7 @@ static char argc_doc[] = "INPUTFILE OUTPUTFILE";
 
 static struct argp_option options[] = {
 	{"verbose", 'v', 0, 0, "describe what is happening"},
-	{"quiet", 'q', 0, 0, "avoid any ouput, even warnings!"},
+	{"quiet", 'q', 0, 0, "avoid any output, even warnings!"},
 	{"blocksize", 'b', "bytes", 0, "use given blocksize"},
 	{ 0 }
 };
